@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validarJWT = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const Usuario = require('../models/usuario');
+const usuario_1 = require("../model/usuario");
 const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.header('x-token');
     if (!token) {
@@ -25,7 +25,7 @@ const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     try {
         const { uid } = jsonwebtoken_1.default.verify(token, process.env.SECRETORPRIVATREKEY);
         // leer el usuario que corresponde al uid
-        const usuario = yield Usuario.findById(uid);
+        const usuario = yield usuario_1.UsuarioModel.findById(uid);
         if (!usuario) {
             return res.status(401).json({
                 msg: 'Token no valido - usuario no existe en DB'

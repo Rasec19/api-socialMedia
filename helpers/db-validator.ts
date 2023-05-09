@@ -1,9 +1,9 @@
-const Role = require('../models/role');
+import { RoleModel } from '../model/role';
 import { UsuarioModel } from '../model/usuario';
 import { ProductoModel } from '../model/producto';
 
 export const esRolValido = async (rol = '') => {
-    const existeRol = await Role.findOne({ rol });
+    const existeRol = await RoleModel.findOne({ rol });
     if ( !existeRol ) {
         throw new Error(`El rol ${ rol } no está registrado en la BD`);
     }

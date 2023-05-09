@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const Usuario = require('../models/usuario');
+import { UsuarioModel } from '../model/usuario'
 
 
 
@@ -19,7 +19,7 @@ export const validarJWT = async( req: any, res: any, next: any ) => {
         const { uid }: any = jwt.verify( token, process.env.SECRETORPRIVATREKEY! );
         
         // leer el usuario que corresponde al uid
-        const usuario = await Usuario.findById( uid );
+        const usuario = await UsuarioModel.findById( uid );
 
         if( !usuario ) {
             return res.status(401).json({

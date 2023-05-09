@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.existeProductoPorId = exports.existeUsuarioPorId = exports.emailExiste = exports.esRolValido = void 0;
-const Role = require('../models/role');
+const role_1 = require("../model/role");
 const usuario_1 = require("../model/usuario");
 const producto_1 = require("../model/producto");
 const esRolValido = (rol = '') => __awaiter(void 0, void 0, void 0, function* () {
-    const existeRol = yield Role.findOne({ rol });
+    const existeRol = yield role_1.RoleModel.findOne({ rol });
     if (!existeRol) {
         throw new Error(`El rol ${rol} no está registrado en la BD`);
     }
