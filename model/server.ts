@@ -9,7 +9,7 @@ import { dbConnection } from '../db/config';
 
 class Server {
     
-    private app: Application;
+    public app: Application;
     private port: string;
     private apiPath = {
         auth: '/api/auth',

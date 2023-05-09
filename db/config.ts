@@ -5,7 +5,7 @@ export const dbConnection = async() => {
 
     try {
         
-        await mongoose.connect( process.env.MONGODB_CNN!);
+        await mongoose.connect( "mongodb+srv://raseccamacho:Ia4kjfEe2lcWj3DM@miclustercafe.kldoi52.mongodb.net/Nextia");
 
         console.log("Base de datos online")
 

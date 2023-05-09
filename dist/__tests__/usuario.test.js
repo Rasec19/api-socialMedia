@@ -12,17 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dbConnection = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-const dbConnection = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield mongoose_1.default.connect("mongodb+srv://raseccamacho:Ia4kjfEe2lcWj3DM@miclustercafe.kldoi52.mongodb.net/Nextia");
-        console.log("Base de datos online");
-    }
-    catch (error) {
-        console.log(`Error: ${error}`);
-        throw new Error(`Error al inicialziar la base de datos`);
-    }
+const supertest_1 = __importDefault(require("supertest"));
+const server_1 = __importDefault(require("../model/server"));
+describe('Pruebas en usuario', () => {
+    const server = new server_1.default();
+    test('debe crear un nuevo usuario y repsonder con status 201', () => __awaiter(void 0, void 0, void 0, function* () {
+        const nuevoUsuario = {
+            nombre: 'John Doe',
+            correo: 'johndoe@example.com',
+            contraseña: 'contraseña123'
+        };
+        const response = yield (0, supertest_1.default)(server.app)
+            .post('/api/usuarios')
+            .send(nuevoUsuario);
+        expect(response.status).toBe(201);
+        // expect(response.body).toMatchObject(nuevoUsuario);
+    }));
 });
-exports.dbConnection = dbConnection;
-//# sourceMappingURL=config.js.map
+//# sourceMappingURL=usuario.test.js.map

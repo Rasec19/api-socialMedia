@@ -15,7 +15,7 @@ export const obtenerUsuarios = async ( req: Request, res: Response ) => {
                 .limit( Number(limit) )
         ]);
 
-        res.status(200).json({
+        res.status(201).json({
             total,
             usuarios
         });
