@@ -1,6 +1,8 @@
-import express, {Application} from 'express';
+import express, { Application } from 'express';
 import userRoutes from '../routes/usuarios'
 import cors from 'cors';
+
+import { dbConnection } from '../db/config';
 
 
 class Server {
@@ -16,14 +18,14 @@ class Server {
         this.port = process.env.PORT || '3000';
 
         // TODO: Metodos iniciales
-        this.dbConnection();
+        this.conectarDB();
         this.middlewares();
         this.routes();
 
     }
 
-    dbConnection() {
-        console.log('Hacer conexion a al DB!');
+    async conectarDB() {
+        await dbConnection();
     }
 
     middlewares() {
