@@ -26,4 +26,9 @@ const ProductoSchema: Schema = new Schema({
     disponible: { type: Boolean, default: true }
 });
 
+ProductoSchema.methods.toJSON = function() {
+    const { __v, estado, ...data  } = this.toObject();
+    return data;
+}
+
 export const ProductoModel = mongoose.model<Producto>('Producto', ProductoSchema);
