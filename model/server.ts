@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
-import userRoutes from '../routes/usuarios'
+import usuariosRoutes from '../routes/usuarios'
+import productosRoutes from '../routes/productos'
 import cors from 'cors';
 
 import { dbConnection } from '../db/config';
@@ -10,7 +11,8 @@ class Server {
     private app: Application;
     private port: string;
     private apiPath = {
-        usuarios: '/api/usuarios'
+        usuarios: '/api/usuarios',
+        productos: '/api/productos',
     };
 
     constructor() {
@@ -41,7 +43,8 @@ class Server {
     }
 
     routes() {
-        this.app.use( this.apiPath.usuarios, userRoutes );
+        this.app.use( this.apiPath.usuarios, usuariosRoutes );
+        this.app.use( this.apiPath.productos, productosRoutes );
     }
 
     listen() {
