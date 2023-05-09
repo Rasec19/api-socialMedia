@@ -50,7 +50,7 @@ export const obtenerProducto = async ( req: Request, res: Response ) => {
     }
 }
 
-export const crearProducto = async ( req: Request, res: Response ) => {
+export const crearProducto = async ( req: any, res: any ) => {
 
     const { estado, usuario, ...body } = req.body;
 
@@ -87,7 +87,7 @@ export const crearProducto = async ( req: Request, res: Response ) => {
     }
 }   
 
-export const actualizarProducto = async ( req: Request, res: Response ) => {
+export const actualizarProducto = async ( req: any, res: any ) => {
 
     try {
         const { id } = req.params;
