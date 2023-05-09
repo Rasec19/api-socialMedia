@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const auth_1 = __importDefault(require("../routes/auth"));
 const usuarios_1 = __importDefault(require("../routes/usuarios"));
 const productos_1 = __importDefault(require("../routes/productos"));
 const cors_1 = __importDefault(require("cors"));
@@ -20,6 +21,7 @@ const config_1 = require("../db/config");
 class Server {
     constructor() {
         this.apiPath = {
+            auth: '/api/auth',
             usuarios: '/api/usuarios',
             productos: '/api/productos',
         };
@@ -44,6 +46,7 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
+        this.app.use(this.apiPath.auth, auth_1.default);
         this.app.use(this.apiPath.usuarios, usuarios_1.default);
         this.app.use(this.apiPath.productos, productos_1.default);
     }

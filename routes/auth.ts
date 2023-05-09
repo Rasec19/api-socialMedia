@@ -17,4 +17,4 @@ router.post('/login', [
 router.get('/', validarJWT, renovarToken);
 
 
-module.exports = router;
+export default router;

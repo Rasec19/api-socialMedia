@@ -11,5 +11,5 @@ router.post('/login', [
     validarCampos
 ], controllers_1.login);
 router.get('/', validarJWT, controllers_1.renovarToken);
-module.exports = router;
+exports.default = router;
 //# sourceMappingURL=auth.js.map
