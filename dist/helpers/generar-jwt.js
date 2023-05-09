@@ -18,7 +18,7 @@ const usuario_1 = require("../model/usuario");
 const generarJWT = (uid = '') => {
     return new Promise((resolve, reject) => {
         const payload = { uid };
-        jsonwebtoken_1.default.sign(payload, process.env.SECRETORPRIVATREKEY, {
+        jsonwebtoken_1.default.sign(payload, "nodejs", {
             expiresIn: '4h'
         }, (err, token) => {
             if (err) {
@@ -37,7 +37,7 @@ const comprobarJWT = (token = '') => __awaiter(void 0, void 0, void 0, function*
         if (token.length < 10) {
             return null;
         }
-        const { uid } = jsonwebtoken_1.default.verify(token, process.env.SECRETORPRIVATREKEY);
+        const { uid } = jsonwebtoken_1.default.verify(token, "nodejs");
         const usuario = yield usuario_1.UsuarioModel.findById(uid);
         if (usuario && usuario.estado) {
             return usuario;

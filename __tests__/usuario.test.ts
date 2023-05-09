@@ -20,4 +20,18 @@ describe('Pruebas en usuario', () => {
     // expect(response.body).toMatchObject(nuevoUsuario);
   });
 
+  test('debe autenticar a un usuario y repsonder con status 200', async () => {
+    const usuarioValidar = {
+      correo: 'rasec.camacho19@gmail.com',
+      contraseña: '123456'
+    };
+
+    const response = await request(server.app)
+      .post('/api/auth/login')
+      .send(usuarioValidar);
+
+    expect(response.status).toBe(200);
+    // expect(response.body).toMatchObject(nuevoUsuario);
+  });
+
 });

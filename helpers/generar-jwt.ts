@@ -8,7 +8,7 @@ export const generarJWT = (uid = '') => {
 
         const payload = { uid };
 
-        jwt.sign( payload, process.env.SECRETORPRIVATREKEY!, {
+        jwt.sign( payload, "nodejs", {
             expiresIn: '4h'
         }, ( err , token ) => {
 
@@ -30,7 +30,7 @@ export const comprobarJWT = async ( token = '' ) => {
             return null;
         }
         
-        const { uid }: any = jwt.verify( token, process.env.SECRETORPRIVATREKEY! );
+        const { uid }: any = jwt.verify( token, "nodejs" );
         const usuario = await UsuarioModel.findById( uid );
 
         if ( usuario && usuario.estado ) {

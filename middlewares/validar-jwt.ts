@@ -16,7 +16,7 @@ export const validarJWT = async( req: any, res: any, next: any ) => {
 
     try {
         
-        const { uid }: any = jwt.verify( token, process.env.SECRETORPRIVATREKEY! );
+        const { uid }: any = jwt.verify( token, "nodejs" );
         
         // leer el usuario que corresponde al uid
         const usuario = await UsuarioModel.findById( uid );

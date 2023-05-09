@@ -23,7 +23,7 @@ const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         });
     }
     try {
-        const { uid } = jsonwebtoken_1.default.verify(token, process.env.SECRETORPRIVATREKEY);
+        const { uid } = jsonwebtoken_1.default.verify(token, "nodejs");
         // leer el usuario que corresponde al uid
         const usuario = yield usuario_1.UsuarioModel.findById(uid);
         if (!usuario) {
