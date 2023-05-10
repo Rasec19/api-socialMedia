@@ -35,6 +35,21 @@ router.post('/login', [
     (0, express_validator_1.check)('contraseña', 'La contraseña es obligatoria').not().isEmpty(),
     validarCampos
 ], controllers_1.login);
+/**
+* @openapi
+* /api/auth:
+*   get:
+*     tags:
+*       - Authenticación
+*     description: Renuva el token del usuario
+*     responses:
+*       200:
+*         description: Un nuevo token
+*       400:
+*         description: Erro del token invalido
+*       500:
+*         description: Error del servidor al renovar token
+*/
 router.get('/', validarJWT, controllers_1.renovarToken);
 exports.default = router;
 //# sourceMappingURL=auth.js.map

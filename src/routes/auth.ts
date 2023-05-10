@@ -39,6 +39,21 @@ router.post('/login', [
     validarCampos
 ], login);
 
+/**
+* @openapi
+* /api/auth:
+*   get:
+*     tags:
+*       - Authenticación
+*     description: Renuva el token del usuario
+*     responses:
+*       200:
+*         description: Un nuevo token
+*       400:
+*         description: Erro del token invalido
+*       500:
+*         description: Error del servidor al renovar token
+*/
 router.get('/', validarJWT, renovarToken);
 
 

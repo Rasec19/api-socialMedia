@@ -18,8 +18,11 @@ const swaggerDefinition = {
     components: {
         securitySchemes: {
             bearerAuth: {
-                type: "http",
+                name: "x-token",
+                type: "apiKey",
                 scheme: "bearer",
+                in: "header",
+                bearerFormat: "JWT"
             },
         },
         schemas: {
@@ -38,6 +41,7 @@ const swaggerDefinition = {
                     },
                     rol: {
                         type: "string",
+                        default: "USER"
                     },
                     estado: {
                         type: "boolean",
@@ -82,6 +86,11 @@ const swaggerDefinition = {
             },
         },
     },
+    security: [
+        {
+            bearerAuth: [],
+        },
+    ],
 };
 const swaggerOptions = {
     swaggerDefinition,

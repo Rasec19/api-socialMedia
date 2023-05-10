@@ -52,13 +52,20 @@ export const login = async ( req: Request, res: Response ) => {
 
 export const renovarToken = async ( req: Request, res: Response ) => {
     
-    const { usuario }: any = req;
+    try {
+        const { usuario }: any = req;
 
-    const token = await generarJWT( usuario.id );
+        const token = await generarJWT( usuario.id );
 
-    res.json({
-        usuario,
-        token
-    });
+        res.json({
+            usuario,
+            token
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            msg: 'Hable con el administrador'
+        });
+    }
 
 };

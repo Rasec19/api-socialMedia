@@ -36,7 +36,7 @@ const obtenerUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function
                 .skip(Number(desde))
                 .limit(Number(limit))
         ]);
-        res.status(201).json({
+        res.status(200).json({
             total,
             usuarios
         });

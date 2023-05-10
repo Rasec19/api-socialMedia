@@ -14,8 +14,11 @@ const swaggerDefinition: OAS3Definition = {
   components: {
     securitySchemes: {
       bearerAuth: {
-        type: "http",
+        name: "x-token",
+        type: "apiKey",
         scheme: "bearer",
+        in: "header",
+        bearerFormat: "JWT"
       },
     },
     schemas: {
@@ -34,6 +37,7 @@ const swaggerDefinition: OAS3Definition = {
           },
           rol: {
             type: "string",
+            default:"USER"
           },
           estado: {
             type: "boolean",
@@ -78,6 +82,11 @@ const swaggerDefinition: OAS3Definition = {
       },
     },
   },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
 };
 
 const swaggerOptions: OAS3Options = {

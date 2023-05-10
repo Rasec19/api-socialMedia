@@ -55,12 +55,20 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.login = login;
 const renovarToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { usuario } = req;
-    const token = yield (0, helpers_1.generarJWT)(usuario.id);
-    res.json({
-        usuario,
-        token
-    });
+    try {
+        const { usuario } = req;
+        const token = yield (0, helpers_1.generarJWT)(usuario.id);
+        res.json({
+            usuario,
+            token
+        });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            msg: 'Hable con el administrador'
+        });
+    }
 });
 exports.renovarToken = renovarToken;
 //# sourceMappingURL=auth.js.map

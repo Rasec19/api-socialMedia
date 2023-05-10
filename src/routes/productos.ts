@@ -18,7 +18,8 @@ const router = Router();
 * /api/productos:
 *   get:
 *     tags:
-*       - Productos
+*       - Producto
+*     summary: Obtiene un listado de todos los productos
 *     description: Obtiene una lista de todos los productos registrados.
 *     responses:
 *       200:
@@ -30,15 +31,15 @@ router.get("/", obtenerProductos);
 
 /**
 * @openapi
-* /api/productos/:id:
+* /api/productos/{id}:
 *   get:
 *     tags:
-*       - Productos
+*       - Producto
 *     summary: Obtiene un producto por su ID
 *     description: Obtiene un producto por el ID proporcionador en el parametro
 *     parameters:
-*       -   name: Id del producto
-*           in: path
+*       -   in: path 
+*           name: id 
 *           description: Regresa el producto
 *           required: true
 *     responses:
@@ -64,7 +65,7 @@ router.get(
 * /api/productos/:
 *   post:
 *     tags:
-*       - Productos
+*       - Producto
 *     summary: Crea un nuevo producto
 *     description: Peticion para crear un nuevo producto solo puedo usarse si el usuario esta validado o logeado
 *     requestBody:
@@ -96,15 +97,15 @@ router.post(
 
 /**
 * @openapi
-* /api/productos/:id:
+* /api/productos/{id}:
 *   put:
 *     tags:
-*       - Productos
+*       - Producto
 *     summary: Actualiza un producto que busca mediante su ID
 *     description: Peticion que actualiza un producto mediante ID, es necesario estar logeado o validado
 *     parameters: 
-*       -   name: ID 
-*           in: path 
+*       -   in: path 
+*           name: id  
 *           description: id de producto que deasea actualizar 
 *           required: true 
 *           schema: 
@@ -139,15 +140,15 @@ router.put(
 
 /**
 * @openapi
-* /api/productos/:id:
+* /api/productos/{id}:
 *   delete:
 *     tags:
-*       - Productos
+*       - Producto
 *     summary: Eliminar un producto
 *     description: Peticion que elimina un producto mediante ID, es necesario estar logeado o validado
 *     parameters: 
-*       -   name: ID 
-*           in: path 
+*       -   in: path 
+*           name: id  
 *           description: id de producto que deasea eliminar 
 *           required: true 
 *           schema: 
