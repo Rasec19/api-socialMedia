@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_1 = __importDefault(require("../docs/swagger"));
 const auth_1 = __importDefault(require("../routes/auth"));
 const usuarios_1 = __importDefault(require("../routes/usuarios"));
 const productos_1 = __importDefault(require("../routes/productos"));
@@ -22,6 +24,7 @@ class Server {
     constructor() {
         this.apiPath = {
             auth: '/api/auth',
+            docs: '/api/docs',
             usuarios: '/api/usuarios',
             productos: '/api/productos',
         };
@@ -47,6 +50,7 @@ class Server {
     }
     routes() {
         this.app.use(this.apiPath.auth, auth_1.default);
+        this.app.use(this.apiPath.docs, swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.default));
         this.app.use(this.apiPath.usuarios, usuarios_1.default);
         this.app.use(this.apiPath.productos, productos_1.default);
     }

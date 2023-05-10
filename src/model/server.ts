@@ -1,4 +1,6 @@
 import express, { Application } from 'express';
+import swaggerUi from 'swagger-ui-express'
+import swaggerSetup from '../docs/swagger';
 import authRoutes from '../routes/auth'
 import usuariosRoutes from '../routes/usuarios'
 import productosRoutes from '../routes/productos'
@@ -13,6 +15,7 @@ class Server {
     private port: string;
     private apiPath = {
         auth: '/api/auth',
+        docs: '/api/docs',
         usuarios: '/api/usuarios',
         productos: '/api/productos',
     };
@@ -46,6 +49,7 @@ class Server {
 
     routes() {
         this.app.use( this.apiPath.auth, authRoutes );
+        this.app.use( this.apiPath.docs, swaggerUi.serve, swaggerUi.setup(swaggerSetup) );
         this.app.use( this.apiPath.usuarios, usuariosRoutes );
         this.app.use( this.apiPath.productos, productosRoutes );
     }

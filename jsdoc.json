@@ -12,7 +12,6 @@
       "recurse": true,
       "destination": "./docs",
       "template": "./node_modules/swagger-jsdoc-template",
-      "tutorials": "./tutorials",
       "readme": "./README.md"
     },
     "templates": {
