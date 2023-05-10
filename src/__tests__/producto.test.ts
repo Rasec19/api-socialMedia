@@ -1,24 +1,28 @@
 import request from 'supertest';
 import Server from '../model/server';
+import supertest from 'supertest';
+import { generarJWT } from '../helpers';
 
 describe('Prueba en productos', () => {
 
   const server = new Server();
 
   test('debe crear un nuevo producto y repsonder con status 201', async () => {
+
+    const token = await generarJWT('6459da00ba8bc6737157048d');
+
     const nuevoProducto = {
-      nombre: 'Play Station 4',
-      precio: 1100,
-      descripcion: 'Es una consola de videojuegos',
+      nombre: 'testProductoCreat',
+      precio: 100,
+      descripcion: 'testing create',
       usuario: '6459da00ba8bc6737157048d'
     };
 
-    const response = await request(server.app)
-      .post('/api/productos')
-      .send(nuevoProducto);
+    const { statusCode } = await supertest(server.app).post("/api/productos")
+                      .set('x-token', `${token}`)
+                      .send(nuevoProducto);
 
-    expect(response.status).toBe(201);
-    // expect(response.body).toMatchObject(nuevoProducto);
+    expect(statusCode).toBe(201);
   });
 
   test('debe obtener todos los productos y repsonder con status 200', async () => {
@@ -32,10 +36,10 @@ describe('Prueba en productos', () => {
   
   test('debe obtener un producto por su id y repsonder con status 200', async () => {
 
-    const id = "6459eee984e561aea5b9f2e9";
+    const idProducto = "6459eee984e561aea5b9f2e9";
   
     const response = await request(server.app)
-      .get(`/api/productos/${id}`)
+      .get(`/api/productos/${idProducto}`)
       .send();
 
     expect(response.status).toBe(200);
@@ -43,28 +47,35 @@ describe('Prueba en productos', () => {
 
   test('debe actualizar un producto por su id y repsonder con status 200', async () => {
 
-    const id = "6459eee984e561aea5b9f2e9";
+    const idUsuario = "6459da00ba8bc6737157048d";
+    const token = await generarJWT(idUsuario);
+
+    const idProducto = '645c28a4051749ef3a2d1d6f';
 
     const updateProducto = {
-      disponible: false,
+      nombre: "testingUpdated",
+      descripcion: "testing updated function",
     };
   
-    const response = await request(server.app)
-      .put(`/api/productos/${id}`)
-      .send( updateProducto );
+    const { statusCode } = await supertest(server.app).put(`/api/productos/${idProducto}`)
+                      .set('x-token', `${token}`)
+                      .send(updateProducto);
 
-    expect(response.status).toBe(200);
+    expect(statusCode).toBe(200);
   });
   
   test('debe eliminar un producto por su id y repsonder con status 200', async () => {
 
-    const id = "6459eee984e561aea5b9f2e9";
-  
-    const response = await request(server.app)
-      .delete(`/api/productos/${id}`)
-      .send();
+    const idUsuario = "6459da00ba8bc6737157048d";
+    const token = await generarJWT(idUsuario);
 
-    expect(response.status).toBe(200);
+    const idProducto = '645c28a4051749ef3a2d1d6f';
+  
+    const { statusCode } = await supertest(server.app).delete(`/api/productos/${idProducto}`)
+                      .set('x-token', `${token}`)
+                      .send();
+
+    expect(statusCode).toBe(200);
   });
 
 });
