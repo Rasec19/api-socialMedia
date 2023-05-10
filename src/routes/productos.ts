@@ -8,6 +8,18 @@ import { esAdminRole } from '../middlewares/validar-roles';
 
 const router = Router();
 
+/**
+ * @swagger
+ * /api/productos:
+ *   get:
+ *     summary: Obtiene una lista de productos
+ *     description: Obtiene una lista de todos los productos registrados.
+ *     responses:
+ *       200:
+ *         description: Lista de productos
+ *       500:
+ *         description: Erro del servidor
+ */
 
 router.get('/', obtenerProductos);
 
