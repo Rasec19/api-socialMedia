@@ -12,11 +12,11 @@ const swaggerDefinition = {
     },
     servers: [
         {
-            url: "http://localhost:3000",
+            url: "https://api-socialmedia-production.up.railway.app",
         },
         {
-            url: "http://api-socialmedia-production.up.railway.app",
-        }
+            url: "http://localhost:3000",
+        },
     ],
     components: {
         securitySchemes: {
