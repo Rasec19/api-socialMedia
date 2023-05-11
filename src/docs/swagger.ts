@@ -8,11 +8,11 @@ const swaggerDefinition: OAS3Definition = {
   },
   servers: [
     {
-      url: "http://localhost:3000",
+      url: "https://api-socialmedia-production.up.railway.app",
     },
     {
-      url: "http://api-socialmedia-production.up.railway.app:3000",
-    }
+      url: "http://localhost:3000",
+    },
   ],
   components: {
     securitySchemes: {
