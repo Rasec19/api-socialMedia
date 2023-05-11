@@ -10,6 +10,9 @@ const swaggerDefinition: OAS3Definition = {
     {
       url: "http://localhost:3000",
     },
+    {
+      url: "api-socialmedia-production.up.railway.app",
+    }
   ],
   components: {
     securitySchemes: {
