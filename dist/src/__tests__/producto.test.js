@@ -14,20 +14,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../model/server"));
+const supertest_2 = __importDefault(require("supertest"));
+const helpers_1 = require("../helpers");
 describe('Prueba en productos', () => {
     const server = new server_1.default();
     test('debe crear un nuevo producto y repsonder con status 201', () => __awaiter(void 0, void 0, void 0, function* () {
+        const token = yield (0, helpers_1.generarJWT)('6459da00ba8bc6737157048d');
         const nuevoProducto = {
-            nombre: 'Play Station 4',
-            precio: 1100,
-            descripcion: 'Es una consola de videojuegos',
+            nombre: 'testProductoCreat',
+            precio: 100,
+            descripcion: 'testing create',
             usuario: '6459da00ba8bc6737157048d'
         };
-        const response = yield (0, supertest_1.default)(server.app)
-            .post('/api/productos')
+        const { statusCode } = yield (0, supertest_2.default)(server.app).post("/api/productos")
+            .set('x-token', `${token}`)
             .send(nuevoProducto);
-        expect(response.status).toBe(201);
-        // expect(response.body).toMatchObject(nuevoProducto);
+        expect(statusCode).toBe(201);
     }));
     test('debe obtener todos los productos y repsonder con status 200', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield (0, supertest_1.default)(server.app)
@@ -36,28 +38,33 @@ describe('Prueba en productos', () => {
         expect(response.status).toBe(200);
     }));
     test('debe obtener un producto por su id y repsonder con status 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const id = "6459eee984e561aea5b9f2e9";
+        const idProducto = "6459eee984e561aea5b9f2e9";
         const response = yield (0, supertest_1.default)(server.app)
-            .get(`/api/productos/${id}`)
+            .get(`/api/productos/${idProducto}`)
             .send();
         expect(response.status).toBe(200);
     }));
     test('debe actualizar un producto por su id y repsonder con status 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const id = "6459eee984e561aea5b9f2e9";
+        const idUsuario = "6459da00ba8bc6737157048d";
+        const token = yield (0, helpers_1.generarJWT)(idUsuario);
+        const idProducto = '645c28a4051749ef3a2d1d6f';
         const updateProducto = {
-            disponible: false,
+            nombre: "testingUpdated",
+            descripcion: "testing updated function",
         };
-        const response = yield (0, supertest_1.default)(server.app)
-            .put(`/api/productos/${id}`)
+        const { statusCode } = yield (0, supertest_2.default)(server.app).put(`/api/productos/${idProducto}`)
+            .set('x-token', `${token}`)
             .send(updateProducto);
-        expect(response.status).toBe(200);
+        expect(statusCode).toBe(200);
     }));
     test('debe eliminar un producto por su id y repsonder con status 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const id = "6459eee984e561aea5b9f2e9";
-        const response = yield (0, supertest_1.default)(server.app)
-            .delete(`/api/productos/${id}`)
+        const idUsuario = "6459da00ba8bc6737157048d";
+        const token = yield (0, helpers_1.generarJWT)(idUsuario);
+        const idProducto = '645c28a4051749ef3a2d1d6f';
+        const { statusCode } = yield (0, supertest_2.default)(server.app).delete(`/api/productos/${idProducto}`)
+            .set('x-token', `${token}`)
             .send();
-        expect(response.status).toBe(200);
+        expect(statusCode).toBe(200);
     }));
 });
 //# sourceMappingURL=producto.test.js.map

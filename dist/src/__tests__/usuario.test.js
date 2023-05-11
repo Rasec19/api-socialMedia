@@ -14,29 +14,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../model/server"));
+const supertest_2 = __importDefault(require("supertest"));
+const helpers_1 = require("../helpers");
 describe('Pruebas en usuario', () => {
     const server = new server_1.default();
-    test('debe crear un nuevo usuario y repsonder con status 201', () => __awaiter(void 0, void 0, void 0, function* () {
-        const nuevoUsuario = {
-            nombre: 'John Doe',
-            correo: 'johndoe@example.com',
-            contraseña: 'contraseña123'
-        };
-        const response = yield (0, supertest_1.default)(server.app)
-            .post('/api/usuarios')
-            .send(nuevoUsuario);
-        expect(response.status).toBe(201);
-        // expect(response.body).toMatchObject(nuevoUsuario);
-    }));
     test('debe autenticar a un usuario y repsonder con status 200', () => __awaiter(void 0, void 0, void 0, function* () {
         const usuarioValidar = {
             correo: 'rasec.camacho19@gmail.com',
             contraseña: '123456'
         };
-        const response = yield (0, supertest_1.default)(server.app)
+        const { status, text } = yield (0, supertest_1.default)(server.app)
             .post('/api/auth/login')
             .send(usuarioValidar);
-        expect(response.status).toBe(200);
+        expect(status).toBe(200);
+        // expect(response.body).toMatchObject(nuevoUsuario);
+    }));
+    test('debe crear un nuevo usuario y repsonder con status 201', () => __awaiter(void 0, void 0, void 0, function* () {
+        const token = yield (0, helpers_1.generarJWT)('6459da00ba8bc6737157048d');
+        const nuevoUsuario = {
+            nombre: 'test',
+            contraseña: '12345678',
+            correo: 'test@test.com',
+            rol: 'USER'
+        };
+        const { statusCode } = yield (0, supertest_2.default)(server.app).post("/api/usuarios")
+            .set('x-token', `${token}`)
+            .send(nuevoUsuario);
+        expect(statusCode).toBe(201);
         // expect(response.body).toMatchObject(nuevoUsuario);
     }));
 });

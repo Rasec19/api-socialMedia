@@ -14,6 +14,9 @@ const swaggerDefinition = {
         {
             url: "http://localhost:3000",
         },
+        {
+            url: "http://api-socialmedia-production.up.railway.app",
+        }
     ],
     components: {
         securitySchemes: {
