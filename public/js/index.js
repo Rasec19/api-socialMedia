@@ -6,7 +6,7 @@ btnSwagger.addEventListener('click', (e) => {
 
     if( actualLocation != "http://localhost:3000") {
         window.location.href = "https://api-socialmedia-production.up.railway.app/api/docs";
+    } else {
+        window.location.href = "http://localhost:3000/api/docs";
     }
-
-    window.location.href = "http://localhost:3000/api/docs";
 });
