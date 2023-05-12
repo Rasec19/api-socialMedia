@@ -1,0 +1,17 @@
+body {
+    height: 100vh;
+    background-color: #202334;
+    color: #66697b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+    background-color: #44485c;
+    color: #f7f1f6;
+    padding: 2rem;
+}
+span {
+    font-weight: bold;
+    color: #4ce672;
+}

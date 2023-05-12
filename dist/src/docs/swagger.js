@@ -35,19 +35,23 @@ const swaggerDefinition = {
                 properties: {
                     nombre: {
                         type: "string",
+                        default: "nuevo usuario"
                     },
                     correo: {
                         type: "string",
+                        default: "nuevo@gmail.com"
                     },
                     contraseña: {
                         type: "string",
+                        default: "123456"
                     },
                     rol: {
                         type: "string",
-                        default: "USER"
+                        default: "ADMIN"
                     },
                     estado: {
                         type: "boolean",
+                        default: "true"
                     },
                 },
             },
@@ -57,21 +61,27 @@ const swaggerDefinition = {
                 properties: {
                     nombre: {
                         type: "string",
+                        default: "nuevo producto"
                     },
                     estado: {
                         type: "boolean",
+                        default: "true"
                     },
                     usuario: {
                         type: "objectId",
+                        default: "id del usuario"
                     },
                     precio: {
                         type: "number",
+                        default: "1"
                     },
                     descripcion: {
                         type: "string",
+                        default: "nueva descripcion"
                     },
                     disponible: {
                         type: "boolean",
+                        default: "true"
                     },
                 },
             },
@@ -81,9 +91,11 @@ const swaggerDefinition = {
                 properties: {
                     correo: {
                         type: "string",
+                        default: "nextia@gmail.com"
                     },
                     contraseña: {
                         type: "string",
+                        default: "123456"
                     },
                 },
             },
